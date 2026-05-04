@@ -37,7 +37,7 @@
           <td><%= skin.preferences.count %></td>
           <td><%= skin.admin_note %></td>
           <td class="actions">
-            <% skin_name = skin.title.downcase.gsub(/ +/, '_') %>
+            <% skin_name = h(skin.title.downcase.gsub(/[^0-9a-z]/i, '_')) %>
             <%= label_tag "make_unofficial_#{skin_name}", class: ["action", disabled ? "disabled" : ""] do %>
               <%= ts("Unapprove") %>  
               <%= check_box_tag "make_unofficial[]", skin.id, false, id: "make_unofficial_#{skin_name}", disabled: disabled %>
