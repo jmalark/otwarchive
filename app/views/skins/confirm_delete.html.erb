@@ -4,7 +4,7 @@
 <!--main content-->
 <%= form_for(@skin, html: { method: :delete, class: "simple destroy" }) do |f| %>
   <p class="caution notice">
-    <%= t(".confirm_html", skin_title: @skin.title) %>
+    <%= t(".confirm_html", skin_title: sanitize(@skin.title)) %>
   </p>
   <p class="actions">
     <%= f.submit ts("Yes, Delete Skin") %>

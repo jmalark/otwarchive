@@ -47,7 +47,7 @@ class SkinsController < ApplicationController
 
   # GET /skins/1
   def show
-    @page_subtitle = @skin.title.html_safe
+    @page_subtitle = sanitize(@skin.title).html_safe
   end
 
   # GET /skins/new
@@ -130,7 +130,7 @@ class SkinsController < ApplicationController
   # Get /skins/1/preview
   def preview
     flash[:notice] = []
-    flash[:notice] << ts("You are previewing the skin %{title}. This is a randomly chosen page.", title: @skin.title)
+    flash[:notice] << t(".notice_with_title", title: sanitize(@skin.title))
     flash[:notice] << ts("Go back or click any link to remove the skin.")
     flash[:notice] << ts("Tip: You can preview any archive page you want by tacking on '?site_skin=[skin_id]' like you can see in the url above.")
     flash[:notice] << "<a href='#{skin_path(@skin)}' class='action' role='button'>".html_safe + ts("Return To Skin To Use") + "</a>".html_safe
