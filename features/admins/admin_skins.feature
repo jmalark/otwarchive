@@ -19,6 +19,15 @@ Feature: Admin manage skins
     And I press "Update"
   Then I should see "The following skins were updated: public skin"
 
+  Scenario: Admin can cache a public skin with a symbol in the name
+  Given basic skins
+    And the approved public skin "public skin with symbols!*&^()"
+    And I am logged in as a "superadmin" admin
+  When I follow "Approved Skins"
+    And I check "Cache"
+    And I press "Update"
+  Then I should see "The following skins were updated: "public skin with symbols!*&^()"
+
   Scenario: Admin can add a public skin to the chooser and then remove it
   Given the approved public skin "public skin"
     And the skin "public skin" is cached
